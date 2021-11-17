@@ -1,4 +1,4 @@
-import { Container, Typography } from "@mui/material";
+// import { Container } from "@mui/material";
 import Head from "next/head";
 import React from "react";
 import NavBar from "./NavBar";
@@ -13,7 +13,7 @@ export default function Layout({ children }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <NavBar />
-      <Container>{children}</Container>
+      <main>{children}</main>
       <Footer />
     </div>
   );
