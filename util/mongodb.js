@@ -1,32 +1,47 @@
-import { MongoClient } from 'mongodb'
+import mongoose from 'mongoose';
 
-const uri = process.env['MONGODB_URI'];
-const options = {
-  useUnifiedTopology: true,
-  useNewUrlParser: true,
-}
+const connection = {};
 
-let client
-let clientPromise
-
-if (!process.env.MONGODB_URI) {
-  throw new Error('Please add your Mongo URI to .env.local')
-}
-
-if (process.env.NODE_ENV === 'development') {
-  // In development mode, use a global variable so that the value
-  // is preserved across module reloads caused by HMR (Hot Module Replacement).
-  if (!global._mongoClientPromise) {
-    client = new MongoClient(uri, options)
-    global._mongoClientPromise = client.connect()
+async function connect() {
+  if (connection.isConnected) {
+    console.log('already connected');
+    return;
   }
-  clientPromise = global._mongoClientPromise
-} else {
-  // In production mode, it's best to not use a global variable.
-  client = new MongoClient(uri, options)
-  clientPromise = client.connect()
+  if (mongoose.connections.length > 0) {
+    connection.isConnected = mongoose.connections[0].readyState;
+    if (connection.isConnected === 1) {
+      console.log('use previous connection');
+      return;
+    }
+    await mongoose.disconnect();
+  }
+  const db = await mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
+console.log('new connection');
+connection.isConnected = db.connections[0].readyState;
 }
 
-// Export a module-scoped MongoClient promise. By doing this in a
-// separate module, the client can be shared across functions.
-export default clientPromise
+async function disconnect() {
+if (connection.isConnected) {
+  if (process.env.NODE_ENV === 'production') {
+    await mongoose.disconnect();
+    connection.isConnected = false;
+  } else {
+    console.log('not disconnected');
+  }
+}
+}
+
+function convertDocToObj (doc){
+  doc._id = doc._id.toString();
+  doc.start = doc.start.toString();
+  doc.end = doc.end.toString();
+  doc.createdAt = doc.createdAt.toString();
+  doc.updatedAt = doc.updatedAt.toString();
+  return doc;
+}
+
+const mongodb = { connect, disconnect, convertDocToObj };
+export default mongodb;

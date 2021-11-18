@@ -1,37 +1,84 @@
-import { AppBar, Toolbar, Typography } from "@mui/material";
 import Link from "next/link";
+import {
+  Toolbar,
+  AppBar,
+  Typography,
+  GlobalStyles,
+  Button,
+  CssBaseline,
+} from "@mui/material";
 // import Image from 'next/image';
-import React from "react";
 
 export default function NavBar() {
   return (
-    <div>
-      <AppBar position="static">
-        <Toolbar>
+    <>
+      <CssBaseline />
+      <AppBar
+        position="static"
+        color="default"
+        elevation={0}
+        sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
+      >
+        <Toolbar sx={{ flexWrap: "wrap" }}>
           <Link href="/">
             {/* <Image src="/image.png" width={128} height={77}/> */}
-            <Typography>CodewordCo</Typography>
-          </Link>
-          <Link href="/">
-            <Typography>Home</Typography>
-          </Link>
-          <Link href="/about">
-            <Typography>
-              <a className="nav-link">About</a>
+            <Typography
+              variant="h6"
+              color="inherit"
+              noWrap
+              sx={{ flexGrow: 1 }}
+            >
+              CodewordCo
             </Typography>
           </Link>
-          <Link href="/programmes">
-            <Typography>
-              <a className="nav-link">Browse Programmes</a>
-            </Typography>
-          </Link>
-          <Link href="/contactus">
-            <Typography>
-              <a className="nav-link">Contact us</a>
-            </Typography>
-          </Link>
+            <Link
+              variant="button"
+              color="text.primary"
+              href="/"
+              sx={{ my: 1, mx: 1.5 }}
+              style={{ color:'black', textDecoration: 'none' }}
+            >
+              Home
+            </Link>
+            <Link
+              variant="button"
+              color="text.primary"
+              href="/about"
+              style={{ color:'black', textDecoration: 'none' }}
+            >
+              About
+            </Link>
+            <Link
+              variant="button"
+              color="text.primary"
+              href="/programmes"
+              sx={{ my: 1, mx: 1.5 }}
+              style={{ color:'black', textDecoration: 'none' }}
+            >
+              Browse Programmes
+            </Link>
+            <Link
+              variant="button"
+              color="text.primary"
+              href="/contactus"
+              sx={{ my: 1, mx: 1.5 }}
+            >
+              Contact us
+            </Link>
+            <Link
+              variant="button"
+              color="text.primary"
+              href="/cart"
+              sx={{ my: 1, mx: 1.5 }}
+              style={{ color:'black', textDecoration: 'none' }}
+            >
+              Cart
+            </Link>
+          <Button href="/login" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
+            Login
+          </Button>
         </Toolbar>
       </AppBar>
-    </div>
+    </>
   );
 }

@@ -1,34 +1,60 @@
-import Head from "next/head";
-import clientPromise from "../../util/mongodb";
+import {
+    Grid,
+    Card,
+    CardActionArea,
+    CardMedia,
+    CardContent,
+    Typography,
+    CardActions,
+    Button,
+  } from "@mui/material";
+import mongodb from "../../util/mongodb";
+import Program from "../../models/Program";
+import Link from "next/link";
 
-export async function getServerSideProps(context) {
-  const client = await clientPromise;
-  const db = client.db("codewordco");
-  const data = await db.collection("programmes").find({}).toArray();
+export default function Programmes(props) {
+  const { programmes } = props;
 
-  const programmes = JSON.parse(JSON.stringify(data));
-
-  return {
-    props: { programmes: programmes },
-  };
+    return (
+        <div>
+            <h1>Programmes</h1>
+            <Grid container spacing={3}>
+            {programmes.map((program) => (
+           <Grid item md={4} key={program.name}>
+           <Card>
+             <CardActionArea>
+               <CardMedia
+                 component="img"
+                 image={program.image}
+                 title={program.name}
+               ></CardMedia>
+               <CardContent>
+                 <Typography>{program.name}</Typography>
+               </CardContent>
+             </CardActionArea>
+             <CardActions>
+               <Typography>${program.price}</Typography>
+               <Link href={`/programmes/${program.slug}`}>
+               <Button size="small" color="primary">
+                 Learn more!
+               </Button>
+               </Link>
+             </CardActions>
+           </Card>
+         </Grid>
+       ))}
+     </Grid>
+   </div>
+);
 }
 
-export default function Programmes({ programmes }) {
-  return (
-    <>
-      <Head>
-        <title>CodewordCo | Programme list</title>
-      </Head>
-      <h1>Programme List</h1>
-      {programmes &&
-        programmes.map((program) => (
-          <div key={program.id}>
-            <a>
-              <h3>{program.name}</h3>
-              <p>Decription: {program.description}</p>
-            </a>
-          </div>
-        ))}
-    </>
-  );
+export async function getServerSideProps() {
+  await mongodb.connect();
+  const programmes = await Program.find({}).lean();
+  await mongodb.disconnect();
+  return {
+    props: {
+      programmes: programmes.map(mongodb.convertDocToObj),
+    },
+  };
 }
