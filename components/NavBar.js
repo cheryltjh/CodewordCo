@@ -1,5 +1,6 @@
 import { AppBar, Toolbar, Typography } from "@mui/material";
 import Link from "next/link";
+// import Image from 'next/image';
 import React from "react";
 
 export default function NavBar() {
@@ -8,6 +9,7 @@ export default function NavBar() {
       <AppBar position="static">
         <Toolbar>
           <Link href="/">
+            {/* <Image src="/image.png" width={128} height={77}/> */}
             <Typography>CodewordCo</Typography>
           </Link>
           <Link href="/">

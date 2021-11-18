@@ -1,15 +1,11 @@
-import Head from "next/head";
-import Layout from "../components/Layout";
 import clientPromise from "../util/mongodb";
 
 export default function Home({ isConnected }) {
   return (
-    <Layout>
     <div className="container">
       <h1>Home</h1>
       <h3>Hi! This is the homepage</h3>
     </div>
-    </Layout>
   );
 }
 
