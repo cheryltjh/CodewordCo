@@ -19,46 +19,41 @@ export default function NavBar() {
         sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
       >
         <Toolbar sx={{ flexWrap: "wrap" }}>
-            {/* <Image src="/image.png" width={128} height={77}/> */}
-            <Typography
-              variant="h6"
-              color="inherit"
-              noWrap
-              sx={{ flexGrow: 1 }}
-            >
-              CodewordCo
-            </Typography>
-            <Link
-              variant="button"
-              color="text.primary"
-              href="/"
-              sx={{ my: 1, mx: 1.5 }}
-              style={{ color:'black', textDecoration: 'none' }}
-            >
-              Home
-            </Link>
-            <li>
+          {/* <Image src="/image.png" width={128} height={77}/> */}
+          <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
+            CodewordCo
+          </Typography>
+          <Link
+            variant="button"
+            color="text.primary"
+            href="/"
+            sx={{ my: 1, mx: 1.5 }}
+            style={{ color: "black", textDecoration: "none" }}
+          >
+            Home
+          </Link>
+          <li>
             <Link
               variant="button"
               color="text.primary"
               href="/about"
-              style={{ color:'black', textDecoration: 'none' }}
+              style={{ color: "black", textDecoration: "none" }}
             >
               About
             </Link>
-            </li>
-            <li>
+          </li>
+          <li>
             <Link
               variant="button"
               color="text.primary"
               href="/programmes"
               sx={{ my: 1, mx: 1.5 }}
-              style={{ color:'black', textDecoration: 'none' }}
+              style={{ color: "black", textDecoration: "none" }}
             >
               Browse Programmes
             </Link>
-            </li>
-            <li>
+          </li>
+          <li>
             <Link
               variant="button"
               color="text.primary"
@@ -67,8 +62,8 @@ export default function NavBar() {
             >
               Contact us
             </Link>
-            </li>
-            {/* <li>
+          </li>
+          {/* <li>
             <Link
               variant="button"
               color="text.primary"
@@ -79,7 +74,10 @@ export default function NavBar() {
               Cart
             </Link>
             </li> */}
-          <Button href="/login" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
+          <Button href="/register" variant="outlined" sx={{ my: 0.5, mx: 1 }}>
+            Sign up
+          </Button>
+          <Button href="/login" variant="outlined" sx={{ my: 0.5, mx: 1 }}>
             Login
           </Button>
         </Toolbar>

@@ -2,26 +2,32 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import axios from "axios";
+import React, { useState } from "react";
+import Link from "next/link";
 
 const theme = createTheme();
 
 export default function Login() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await axios.post('/api/users/login', {
+        email,
+        password,
+      });
+      alert('succss login');
+    } catch (err) {
+      alert(err.response.data ? err.response.data.message : err.message);
+    }
   };
 
   return (
@@ -39,7 +45,7 @@ export default function Login() {
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Login
           </Typography>
           <Box
             component="form"
@@ -55,16 +61,18 @@ export default function Login() {
               label="Email Address"
               name="email"
               autoComplete="email"
-              autoFocus
+              inputProps={{ type: 'email' }}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               margin="normal"
               required
               fullWidth
+              id="password"
               name="password"
               label="Password"
-              type="password"
-              id="password"
+              inputProps={{ type: 'password' }}
+              onChange={(e) => setPassword(e.target.value)}
               autoComplete="current-password"
             />
             <Button
@@ -73,7 +81,7 @@ export default function Login() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+                Login
             </Button>
             <Grid container>
               <Grid item>
