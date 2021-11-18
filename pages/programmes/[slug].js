@@ -4,11 +4,8 @@ import Link from "next/link";
 import Program from "../../models/Program";
 import mongodb from "../../util/mongodb";
 
-function ShowProgram(props) {
+export default function ShowProgram(props) {
   const { program } = props;
-  if (!program) {
-    return <div>Program Not Found</div>;
-  }
 
   return (
     <>
@@ -48,8 +45,6 @@ function ShowProgram(props) {
     </>
   );
 }
-
-export default ShowProgram;
 
 export async function getServerSideProps(context) {
   const { params } = context;

@@ -9,6 +9,7 @@
     "@emotion/react": "^11.6.0",
     "@emotion/styled": "^11.6.0",
     "@mui/material": "^5.1.1",
+    "axios": "^0.24.0",
     "dns": "^0.2.2",
     "fs": "^0.0.1-security",
     "mongodb": "^3.7.3",

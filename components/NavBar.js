@@ -3,7 +3,6 @@ import {
   Toolbar,
   AppBar,
   Typography,
-  GlobalStyles,
   Button,
   CssBaseline,
 } from "@mui/material";
@@ -20,7 +19,6 @@ export default function NavBar() {
         sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
       >
         <Toolbar sx={{ flexWrap: "wrap" }}>
-          <Link href="/">
             {/* <Image src="/image.png" width={128} height={77}/> */}
             <Typography
               variant="h6"
@@ -30,7 +28,6 @@ export default function NavBar() {
             >
               CodewordCo
             </Typography>
-          </Link>
             <Link
               variant="button"
               color="text.primary"
@@ -40,6 +37,7 @@ export default function NavBar() {
             >
               Home
             </Link>
+            <li>
             <Link
               variant="button"
               color="text.primary"
@@ -48,6 +46,8 @@ export default function NavBar() {
             >
               About
             </Link>
+            </li>
+            <li>
             <Link
               variant="button"
               color="text.primary"
@@ -57,6 +57,8 @@ export default function NavBar() {
             >
               Browse Programmes
             </Link>
+            </li>
+            <li>
             <Link
               variant="button"
               color="text.primary"
@@ -65,6 +67,8 @@ export default function NavBar() {
             >
               Contact us
             </Link>
+            </li>
+            {/* <li>
             <Link
               variant="button"
               color="text.primary"
@@ -74,6 +78,7 @@ export default function NavBar() {
             >
               Cart
             </Link>
+            </li> */}
           <Button href="/login" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
             Login
           </Button>
