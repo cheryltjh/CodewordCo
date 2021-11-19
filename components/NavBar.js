@@ -63,7 +63,7 @@ export default function NavBar() {
               Contact us
             </Link>
           </li>
-          {/* <li>
+          <li>
             <Link
               variant="button"
               color="text.primary"
@@ -73,7 +73,7 @@ export default function NavBar() {
             >
               Cart
             </Link>
-            </li> */}
+            </li>
           <Button href="/register" variant="outlined" sx={{ my: 0.5, mx: 1 }}>
             Sign up
           </Button>

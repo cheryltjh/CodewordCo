@@ -35,7 +35,7 @@ export default function ShowProgram(props) {
             <ListItem>Price: ${program.price}</ListItem>
             <ListItem>Decription: {program.description}</ListItem>
             <ListItem>
-              <Button fullWidth variant="contained" color="primary">
+              <Button href="/cart" fullWidth variant="contained" color="primary">
                 Add to cart
               </Button>
             </ListItem>
