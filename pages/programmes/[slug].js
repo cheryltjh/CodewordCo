@@ -1,23 +1,27 @@
 import { Button, Grid, List, ListItem } from "@mui/material";
-import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useContext } from "react";
 import Program from "../../models/Program";
 import mongodb from "../../util/mongodb";
+import axios from "axios";
+import React, {useContext} from "react";
 import { Store } from "../../util/store";
 import { useRouter } from "next/router";
 
 export default function ShowProgram(props) {
   const router = useRouter();
-  const { dispatch } = useContext(Store);
+  const dispatch = useContext(Store);
   const { program } = props;
 
   const addToCartHandler = async () => {
     const { data } = await axios.get(`/api/programmes/${program._id}`);
+    if (data.seatsAvailable <= 0) {
+      window.alert('Sorry, Class is fully booked');
+      return;
+    }
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...program, quantity: 1 } });
     router.push("/cart");
-  };
+  }
 
   return (
     <>
@@ -46,6 +50,7 @@ export default function ShowProgram(props) {
             <ListItem>Program End Date: {program.end}</ListItem>
             <ListItem>Price: ${program.price}</ListItem>
             <ListItem>Decription: {program.description}</ListItem>
+            <ListItem>Class size: {program.seatsAvailable}</ListItem>
             <ListItem>
               <Button
                 href="/cart"

@@ -1,4 +1,4 @@
-import nc from "next-connect";
+import nc from 'next-connect';
 import Program from "../../../models/Program";
 import mongodb from "../../../util/mongodb";
 

@@ -2,6 +2,7 @@ import Link from "next/link";
 import React, { useContext } from "react";
 import { Store } from "../util/store";
 import Image from "next/image";
+import axios from "axios";
 import {
   Grid,
   TableContainer,
@@ -20,8 +21,23 @@ import {
 } from "@mui/material";
 
 export default function CartScreen() {
-  const { state } = useContext(Store);
-  const { cart: {cartItems}, } = state;
+  const { state, dispatch } = useContext(Store);
+  const {
+    cart: { cartItems },
+  } = state;
+
+  const updateCartHandler = async (item, quantity) => {
+    const { data } = await axios.get(`/api/programmes/${item._id}`);
+    if (data.seatsAvailable < quantity) {
+      window.alert("Sorry. Fully booked");
+      return;
+    }
+    dispatch({ type: "CART_ADD_ITEM", payload: { ...item, quantity } });
+  };
+
+  const removeItemHandler = (item) => {
+    dispatch({ type: "CART_REMOVE_ITEM", payload: item });
+  };
 
   return (
     <>
@@ -39,6 +55,7 @@ export default function CartScreen() {
                   <TableRow>
                     <TableCell>Image</TableCell>
                     <TableCell>Name</TableCell>
+                    <TableCell align="right">Quantity</TableCell>
                     <TableCell align="right">Price</TableCell>
                     <TableCell align="right">Action</TableCell>
                   </TableRow>
@@ -47,23 +64,29 @@ export default function CartScreen() {
                   {cartItems.map((item) => (
                     <TableRow key={item._id}>
                       <TableCell>
-                          <Link>
-                            <Image
-                              src={item.image}
-                              alt={item.name}
-                              width={50}
-                              height={50}
-                            ></Image>
-                          </Link>
+                        <Link href={`/api/program/${item.slug}`}>
+                          <Image
+                            src={item.image}
+                            alt={item.name}
+                            width={50}
+                            height={50}
+                          ></Image>
+                        </Link>
                       </TableCell>
+
                       <TableCell>
-                          <Link>
-                            <Typography>{item.name}</Typography>
-                          </Link>
+                        <Link href={`/api/program/${item.slug}`}>
+                          <Typography>{item.name}</Typography>
+                        </Link>
                       </TableCell>
                       <TableCell align="right">
-                        <Select value={item.quantity}>
-                          {[...Array(item.countInStock).keys()].map((x) => (
+                        <Select
+                          value={item.quantity}
+                          onChange={(e) =>
+                            updateCartHandler(item, e.target.value)
+                          }
+                        >
+                          {[...Array(item.seatsAvailable).keys()].map((x) => (
                             <MenuItem key={x + 1} value={x + 1}>
                               {x + 1}
                             </MenuItem>
@@ -72,7 +95,11 @@ export default function CartScreen() {
                       </TableCell>
                       <TableCell align="right">${item.price}</TableCell>
                       <TableCell align="right">
-                        <Button variant="contained" color="secondary">
+                        <Button
+                          variant="contained"
+                          color="secondary"
+                          onClick={() => removeItemHandler(item)}
+                        >
                           x
                         </Button>
                       </TableCell>

@@ -7,8 +7,9 @@ const programSchema = new mongoose.Schema(
     description: { type: String, required: true },
     image: { type: String, required: true },
     price: { type: Number, required: true },
-    start: { type: Date, required: true },
-    end: { type: Date, required: true },
+    start: { type: String, required: true },
+    end: { type: String, required: true },
+    seatsAvailable: { type: Number, required: true },
   },
   { timestamps: true }
 );

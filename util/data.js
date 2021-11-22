@@ -24,6 +24,7 @@ const data = {
             end: '02 March 2022',
             image: '/images/image1.jpg',
             price: 145,
+            seatsAvailable: 12,
         },
         {
             name: 'Python',
@@ -33,6 +34,7 @@ const data = {
             end: '12 April 2022',
             image: '/images/image2.jpg',
             price: 145,
+            seatsAvailable: 12,
         },
         {
             name: 'JavaScript',
@@ -42,6 +44,7 @@ const data = {
             end: '22 May 2022',
             image: '/images/image3.jpg',
             price: 145,
+            seatsAvailable: 12,
         },
     ],
 };

@@ -3,10 +3,10 @@ import { StoreProvider } from "../util/store";
 
 export default function MyApp({ Component, pageProps }) {
   return (
-    <Layout>
-      <StoreProvider>
-      <Component {...pageProps} />
-      </StoreProvider>
-    </Layout>
-  )
+    <StoreProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </StoreProvider>
+  );
 }
