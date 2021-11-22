@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React from "react";
+import React, {useContext} from "react";
 import NavBar from "./NavBar";
 
 export default function Layout({ children }) {
