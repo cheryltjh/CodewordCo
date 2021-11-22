@@ -2,25 +2,25 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
+import Link from "next/link";
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {useState} from "react";
 
 const theme = createTheme();
 
 export default function Register() {
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        // eslint-disable-next-line no-console
-        console.log({
-          email: data.get('email'),
-          password: data.get('password'),
-        });
-      };
+  const initialState = { name: '', email: '', password:''}
+  const [userData, setUserData] = useState(initialState)
+  const { name, email, password } = userData;
+
+  const handleChangeInput = e => {
+    const {name, value} = e.target
+    setUserData({...userData, [name]:value})
+  }
     
       return (
         <ThemeProvider theme={theme}>
@@ -39,7 +39,7 @@ export default function Register() {
               <Typography component="h1" variant="h5">
                 Sign up
               </Typography>
-              <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+              <Box component="form" noValidate sx={{ mt: 3 }}>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
                     <TextField
@@ -50,6 +50,8 @@ export default function Register() {
                       id="Name"
                       label="Name"
                       autoFocus
+                      value={name}
+                      onChange={handleChangeInput}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -60,6 +62,8 @@ export default function Register() {
                       label="Email Address"
                       name="email"
                       autoComplete="email"
+                      value={email}
+                      onChange={handleChangeInput}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -71,6 +75,8 @@ export default function Register() {
                       type="password"
                       id="password"
                       autoComplete="new-password"
+                      value={password}
+                      onChange={handleChangeInput}
                     />
                   </Grid>
                 </Grid>

@@ -1,7 +1,10 @@
 import Link from "next/link";
 import React, { useContext } from "react";
 import { Store } from "../util/store";
+import mongodb from "../util/mongodb";
 import Image from "next/image";
+import Program from "../models/Program";
+import { useRouter } from "next/router";
 import axios from "axios";
 import {
   Grid,
@@ -21,6 +24,7 @@ import {
 } from "@mui/material";
 
 export default function CartScreen() {
+  const router = useRouter();
   const { state, dispatch } = useContext(Store);
   const {
     cart: { cartItems },
@@ -28,6 +32,7 @@ export default function CartScreen() {
 
   const updateCartHandler = async (item, quantity) => {
     const { data } = await axios.get(`/api/programmes/${item._id}`);
+    console.log(data);
     if (data.seatsAvailable < quantity) {
       window.alert("Sorry. Fully booked");
       return;
@@ -37,6 +42,10 @@ export default function CartScreen() {
 
   const removeItemHandler = (item) => {
     dispatch({ type: "CART_REMOVE_ITEM", payload: item });
+  };
+
+  const checkoutHandler = () => {
+    router.push("/checkout");
   };
 
   return (
@@ -64,7 +73,7 @@ export default function CartScreen() {
                   {cartItems.map((item) => (
                     <TableRow key={item._id}>
                       <TableCell>
-                        <Link href={`/api/program/${item.slug}`}>
+                        <Link href={`/api/programmes/${item.slug}`}>
                           <Image
                             src={item.image}
                             alt={item.name}
@@ -75,7 +84,7 @@ export default function CartScreen() {
                       </TableCell>
 
                       <TableCell>
-                        <Link href={`/api/program/${item.slug}`}>
+                        <Link href={`/api/programmes/${item.slug}`}>
                           <Typography>{item.name}</Typography>
                         </Link>
                       </TableCell>
@@ -120,7 +129,12 @@ export default function CartScreen() {
                   </Typography>
                 </ListItem>
                 <ListItem>
-                  <Button variant="contained" color="primary" fullWidth>
+                  <Button
+                    onClick={checkoutHandler}
+                    variant="contained"
+                    color="primary"
+                    fullWidth
+                  >
                     Check Out
                   </Button>
                 </ListItem>
@@ -131,4 +145,15 @@ export default function CartScreen() {
       )}
     </>
   );
+}
+
+export async function getServerSideProps() {
+  await mongodb.connect();
+  const programmes = await Program.find({}).lean();
+  await mongodb.disconnect();
+  return {
+    props: {
+      programmes: programmes.map(mongodb.convertDocToObj),
+    },
+  };
 }

@@ -1,5 +1,6 @@
 import Head from "next/head";
 import NavBar from "./NavBar";
+import React from "react";
 
 export default function Layout({ children }) {
 
