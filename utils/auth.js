@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-const signToken = (user) => {
+const createAccessToken = (user) => {
   return jwt.sign(
     {
       _id: user._id,
@@ -15,6 +15,7 @@ const signToken = (user) => {
     }
   );
 };
+
 const isAuth = async (req, res, next) => {
   const { authorization } = req.headers;
   if (authorization) {
@@ -31,6 +32,7 @@ const isAuth = async (req, res, next) => {
     res.status(401).send({ message: 'Token is not suppiled' });
   }
 };
+
 const isAdmin = async (req, res, next) => {
   if (req.user.isAdmin) {
     next();
@@ -39,4 +41,4 @@ const isAdmin = async (req, res, next) => {
   }
 };
 
-export { signToken, isAuth, isAdmin };
+export { createAccessToken, isAuth, isAdmin };

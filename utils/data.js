@@ -1,17 +1,18 @@
 import bcrypt from 'bcrypt';
+const salt = 10;
 
 const data = {
   users: [
     {
       name: 'John',
       email: 'admin@example.com',
-      password: bcrypt.hashSync('123456'),
+      password: bcrypt.hashSync('123456', bcrypt.genSaltSync(10)),
       isAdmin: true,
     },
     {
       name: 'Jane',
       email: 'user@example.com',
-      password: bcrypt.hashSync('123456'),
+      password: bcrypt.hashSync('123456', bcrypt.genSaltSync(10)),
       isAdmin: false,
     },
   ],
