@@ -1,35 +1,20 @@
-import { Button, Grid, List, ListItem } from "@mui/material";
-import Image from "next/image";
-import Link from "next/link";
-import Program from "../../models/Program";
-import mongodb from "../../util/mongodb";
-import axios from "axios";
-import React, {useContext} from "react";
-import { Store } from "../../util/store";
+import React from "react";
 import { useRouter } from "next/router";
+import data from "../../utils/data";
+import Layout from "../../components/Layout";
+import Link from "next/link";
+import Image from "next/image";
+import { Button, Grid, List, ListItem } from "@mui/material";
 
-export default function ShowProgram(props) {
+export default function ProgramScreen() {
   const router = useRouter();
-  const dispatch = useContext(Store);
-  const { program } = props;
-
-  const addToCartHandler = async () => {
-    const { data } = await axios.get(`/api/programmes/${program._id}`);
-    if (data.seatsAvailable <= 0) {
-      window.alert('Sorry, Class is fully booked');
-      return;
-    }
-    dispatch({ type: 'CART_ADD_ITEM', payload: { ...program, quantity: 1 } });
-    router.push("/cart");
-  }
+  const { slug } = router.query;
+  const program = data.programmes.find((a) => a.slug === slug);
 
   return (
-    <>
+    <Layout>
       <div>
-        <h1>{program.name}</h1>
-        <Link href="/programmes">
-          <h4>Back to Program Listing</h4>
-        </Link>
+      <Link href="/programmes">Back to Program Listings</Link>
       </div>
       <Grid container spacing={1}>
         <Grid item md={3} xs={5}>
@@ -44,12 +29,12 @@ export default function ShowProgram(props) {
         <Grid item md={3} xs={12}>
           <List>
             <ListItem>
-              <h1>Name: {program.name}</h1>
+              <h1>{program.name}</h1>
             </ListItem>
             <ListItem>Program Start Date: {program.start}</ListItem>
             <ListItem>Program End Date: {program.end}</ListItem>
             <ListItem>Price: ${program.price}</ListItem>
-            <ListItem>Decription: {program.description}</ListItem>
+            <ListItem>Description: {program.description}</ListItem>
             <ListItem>Class size: {program.seatsAvailable}</ListItem>
             <ListItem>
               <Button
@@ -57,7 +42,6 @@ export default function ShowProgram(props) {
                 fullWidth
                 variant="contained"
                 color="primary"
-                onClick={addToCartHandler}
               >
                 Add to cart
               </Button>
@@ -65,20 +49,6 @@ export default function ShowProgram(props) {
           </List>
         </Grid>
       </Grid>
-    </>
+    </Layout>
   );
-}
-
-export async function getServerSideProps(context) {
-  const { params } = context;
-  const { slug } = params;
-
-  await mongodb.connect();
-  const program = await Program.findOne({ slug }).lean();
-  await mongodb.disconnect();
-  return {
-    props: {
-      program: mongodb.convertDocToObj(program),
-    },
-  };
 }

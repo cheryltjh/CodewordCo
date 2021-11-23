@@ -1,6 +1,6 @@
-import Program from "../../../models/program"
-import nc from "next-connect";
-import mongodb from "../../../util/mongodb";
+import nc from 'next-connect';
+import Program from '../../../models/programModel';
+import mongodb from '../../../utils/mongodb';
 
 const handler = nc();
 

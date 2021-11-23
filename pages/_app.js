@@ -1,12 +1,12 @@
-import Layout from "../components/Layout";
-import { StoreProvider } from "../util/store";
+import "../styles/globals.css";
+import { StoreProvider } from "../utils/Store";
 
-export default function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }) {
   return (
-    <StoreProvider>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </StoreProvider>
+  <StoreProvider>
+    <Component {...pageProps} />
+  </StoreProvider>
   );
 }
+
+export default MyApp;
