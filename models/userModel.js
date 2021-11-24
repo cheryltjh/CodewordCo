@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-const userSchema = new mongoose.Schema(
+const userSchema = new Schema(
   {
     username: { type: String, required: true },
     email: {
@@ -14,6 +15,7 @@ const userSchema = new mongoose.Schema(
       min: [6, "Password cannot be too short. Minimum 6 characters."],
     },
     isAdmin: { type: Boolean, default: false, required: true },
+    isUser: { type: Boolean, default: false, required: true },
   },
   {
     timestamps: true,
@@ -21,4 +23,4 @@ const userSchema = new mongoose.Schema(
 );
 
 const User = mongoose.model("User", userSchema);
-export default User;
+module.exports = User;

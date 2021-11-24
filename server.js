@@ -9,8 +9,9 @@ const path = require("path")
 const session = require("express-session");
 const PORT = process.env.PORT ?? 3000;
 const mongoose = require("mongoose");
-const productRouter = require("./backend/routers/productRouter");
-const userRouter = require("./backend/routers/userRouter");
+const productRouter = require("./routers/productRouter");
+const userRouter = require("./routers/userRouter");
+const sessionRouter = require("./routers/sessionRouter");
 const MONGO_URI = process.env.MONGO_URI 
 
 // =======================================
@@ -42,29 +43,10 @@ app.use(cors());
 app.use(express.json());
 app.use("/api", productRouter);
 app.use("/api", userRouter);
+app.use("/api", sessionRouter);
 
-const Product = require("./backend/models/productModel");
 app.get("/", (req, res) => {
-  Product.create(
-    {
-      name: "Java",
-      description: "Learn!",
-      image: "test",
-      price: "145",
-      seatsAvailable: "12",
-    },
-    (error, createdProduct) => {
-      if (error) {
-        res.status(400).json({ error: error.message });
-      }
-      // .json() will send proper headers in response so client knows it's json coming back
-      res.status(200).send(createdProduct);
-    }
-  );
-});
-
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build", "index.html"));
+  res.json("Hey there!");
 });
 
 // =======================================
