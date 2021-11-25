@@ -1,15 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import {
-  Form,
-  LoginInfo,
-  LabelContainer,
-  InputContainer,
-  Label,
-  Input,
-  Button,
-} from "../styles/LoginStyle";
 
 function Login({ setAuth, setRole, setUsername }) {
   const [login, setLogin] = useState({});
@@ -50,7 +41,7 @@ function Login({ setAuth, setRole, setUsername }) {
   return (
     <>
       <h1>Login</h1>
-      <Form>
+      {/* <Form>
         <LoginInfo>
           <LabelContainer>
             <Label>Username:</Label>
@@ -75,7 +66,7 @@ function Login({ setAuth, setRole, setUsername }) {
         <Button type="submit" onClick={handleSubmit}>
           Submit
         </Button>
-      </Form>
+      </Form> */}
     </>
   );
 }

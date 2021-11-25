@@ -1,18 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import {
-  Form,
-  Label,
-  DescriptionLabel,
-  ProductInfo,
-  LabelContainer,
-  InputContainer,
-  Input,
-  DescriptionInput,
-  CancelLink,
-  Button,
-} from "../styles/ProductUpdateStyle";
 
 export default function EnrollmentUpdate({ role, auth }) {
   const history = useHistory();
@@ -69,7 +57,7 @@ export default function EnrollmentUpdate({ role, auth }) {
   return (
     <>
       <h1>Update Enrollment Details</h1>
-      <Form onSubmit={handleUpdate}>
+      {/* <form onSubmit={handleUpdate}>
         <ProductInfo>
           <LabelContainer>
             <Label>Name:</Label>
@@ -121,10 +109,10 @@ export default function EnrollmentUpdate({ role, auth }) {
         <Button type="submit" value="Update Enrollment">
           Update Enrollment
         </Button>
-      </Form>
+      </form>
       <CancelLink to={"/products"}>
         <Button>Cancel</Button>
-      </CancelLink>
+      </CancelLink> */}
     </>
   );
 }

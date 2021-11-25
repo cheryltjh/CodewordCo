@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
-import {
-  LinkText,
-  Div,
-} from "../styles/DashboardStyle";
 
 function Dashboard({ role }) {
   // For the enrollment data
@@ -37,7 +33,7 @@ function Dashboard({ role }) {
       {enrolls.map((element) => {
         return (
           <>
-            <Div class="enrolls">
+            <div class="enrolls">
               <p key={element._id} />
               <Link to={`/enrolls/${element._id}`}>
               </Link>
@@ -48,15 +44,15 @@ function Dashboard({ role }) {
               {element.product}
               {role === "Admin" && (
                 <>
-                  <LinkText onClick={() => updateEnroll(element._id)}>
+                  <Link onClick={() => updateEnroll(element._id)}>
                     Update
-                  </LinkText>
-                  <LinkText onClick={() => deleteEnroll(element._id)}>
+                  </Link>
+                  <Link onClick={() => deleteEnroll(element._id)}>
                     X
-                  </LinkText>
+                  </Link>
                 </>
               )}
-            </Div>
+            </div>
           </>
         );
       })}

@@ -1,12 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import {
-    Img,
-    Button,
-    ContentBox,
-    Content1,
-  } from "../styles/AuthProductItem";
 
 function AuthProductList({ userName, role }) {
   let id = useParams();
@@ -32,10 +26,8 @@ function AuthProductList({ userName, role }) {
   return (
     <>
       <div>
-        <ContentBox>
           <h1>{product?.name}</h1>
-          <Img src={product?.image} alt={product?.name} width="400px" height="400px" />
-          <Content1>
+          <img src={product?.image} alt={product?.name} width="400px" height="400px" />
           <h4>Description:</h4>
               <p> {product?.description}</p>
               <h4>Start date:</h4>
@@ -46,9 +38,7 @@ function AuthProductList({ userName, role }) {
               <p> {product?.price}</p>
               <h4>Seats Available:</h4>
               <p> {product?.seatsAvailable}</p>
-          </Content1>
-          <Button onClick={() => productListPage()}>Back</Button>
-        </ContentBox>
+          <button onClick={() => productListPage()}>Back</button>
       </div>
       <br />
     </>

@@ -1,17 +1,6 @@
 import React, { useRef } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import {
-    Form,
-    Label,
-    DescriptionLabel,
-    ProductInfo,
-    LabelContainer,
-    InputContainer,
-    Input,
-    DescriptionInput,
-    Button,
-  } from "../styles/ProductCreateStyle";
 
 export default function ProductCreate({role, auth}) {
     let history = useHistory();
@@ -62,7 +51,7 @@ export default function ProductCreate({role, auth}) {
     return (
         <>
         <h1>Create New Product</h1>
-        <Form onSubmit={handleSubmit}>
+        {/* <Form onSubmit={handleSubmit}>
           <ProductInfo>
             <LabelContainer>
               <Label>Name:</Label>
@@ -90,7 +79,7 @@ export default function ProductCreate({role, auth}) {
           </ProductInfo>
           <Button>Create New Product</Button>
           <Button onClick={handleCancel}>Cancel</Button>
-        </Form>
+        </Form> */}
       </>
     );
   }
