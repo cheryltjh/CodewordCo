@@ -1,5 +1,6 @@
-const userdata = {
-  users: [
+const bcrypt = require("bcrypt");
+
+const userData = [
     {
       name: 'John',
       email: 'admin@example.com',
@@ -12,7 +13,6 @@ const userdata = {
       password: bcrypt.hashSync('123456', 10),
       isAdmin: false,
     },
-  ],
-};
+];
 
-export default userdata;
+module.exports = userData;

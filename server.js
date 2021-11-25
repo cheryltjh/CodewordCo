@@ -1,24 +1,19 @@
-// =======================================
-//              DEPENDENCIES
-// =======================================
 require("dotenv").config()
 const express = require("express");
 const cors = require("cors");
 const app = express();
 const path = require("path")
-const session = require("express-session");
 const PORT = process.env.PORT ?? 3000;
 const mongoose = require("mongoose");
-const productRouter = require("./routers/productRouter");
-const userRouter = require("./routers/userRouter");
-const sessionRouter = require("./routers/sessionRouter");
+const session = require("express-session");
+const productRouter = require("./controllers/productRouter");
+const orderRouter = require("./controllers/orderRouter");
+const userRouter = require("./controllers/userRouter");
+const sessionRouter = require("./controllers/sessionRouter");
 const MONGO_URI = process.env.MONGO_URI 
 
-// =======================================
-//              CONFIGURATION
-// =======================================
 mongoose
-  .connect(process.env.MONGO_URI, { useNewUrlParser: true })
+  .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .catch((err) => {
     console.error("Connection error", err.message);
   });
@@ -26,9 +21,6 @@ mongoose.connection.on("error", (err) =>
   console.log(err.message + "Mongod not running")
 );
 
-// =======================================
-//              MIDDLEWARE
-// =======================================
 app.use(express.static(path.join(__dirname, "./frontend/build")));
 // for session
 app.use(
@@ -42,14 +34,31 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.json());
 app.use("/api", productRouter);
+app.use("/api", orderRouter);
 app.use("/api", userRouter);
 app.use("/api", sessionRouter);
-
+const Product = require("./models/productModel");
 app.get("/", (req, res) => {
-  res.json("Hey there!");
+  Product.create(
+    {
+      name: "JavaScript",
+      description: "Learn your foundational knowledge of JavaScript here!",
+      start: "22 March 2022",
+      end: "22 May 2022",
+      image:
+        "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      price: 145,
+      seatsAvailable: 12,
+    },
+    (error, createdProduct) => {
+      if (error) {
+        res.status(400).json({ error: error.message });
+      }
+      // .json() will send proper headers in response so client knows it's json coming back
+      res.status(200).send(createdProduct);
+    }
+  );
 });
 
-// =======================================
-//              LISTENER
-// =======================================
+//listener
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

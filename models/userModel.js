@@ -14,8 +14,7 @@ const userSchema = new Schema(
       required: true,
       min: [6, "Password cannot be too short. Minimum 6 characters."],
     },
-    isAdmin: { type: Boolean, default: false, required: true },
-    isUser: { type: Boolean, default: false, required: true },
+    role: { type: String, required: true, default: "Guest" },
   },
   {
     timestamps: true,
