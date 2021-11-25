@@ -1,6 +1,107 @@
 import React, { useRef } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import styled from "styled-components"
+
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Label = styled.label`
+  margin: 7px 5px 8px 5px;
+`;
+
+export const DescriptionLabel = styled.label`
+  margin: 40px 5px 43px 5px;
+`;
+
+export const ProductInfo = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+`;
+
+export const LabelContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 2.5px;
+`;
+
+export const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Input = styled.input`
+  margin: 5px;
+  padding: 2px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 16px;
+  @media only screen and (max-width: 600px) {
+    border: 1px solid black;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 14px;
+    position:relative;
+  }
+`;
+
+export const DescriptionInput = styled.textarea`
+  height: 90px;
+  resize: none;
+  margin: 5px;
+  padding: 2px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 16px;
+  @media only screen and (max-width: 600px) {
+    border: 1px solid black;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 14px;
+    position:relative;
+  }
+`;
+
+export const Select = styled.select`
+  margin: 5px;
+  padding: 2px;
+  cursor: pointer;
+`;
+
+export const Button = styled.button`
+  padding: 10px;
+  margin: 7px 2px;
+  border: none;
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  background-color: #778da9;
+  @media only screen and (max-width: 600px) {
+    border: none;
+    border-radius: 6px;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 14px;
+    position: relative;
+  }
+  &:hover {
+    background-color: rgb(228, 228, 228);
+  }
+  &:active {
+    background-color: grey};
+  }
+`;
 
 export default function ProductCreate({role, auth}) {
     let history = useHistory();
@@ -51,7 +152,7 @@ export default function ProductCreate({role, auth}) {
     return (
         <>
         <h1>Create New Product</h1>
-        {/* <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
           <ProductInfo>
             <LabelContainer>
               <Label>Name:</Label>
@@ -79,7 +180,7 @@ export default function ProductCreate({role, auth}) {
           </ProductInfo>
           <Button>Create New Product</Button>
           <Button onClick={handleCancel}>Cancel</Button>
-        </Form> */}
+        </Form>
       </>
     );
   }

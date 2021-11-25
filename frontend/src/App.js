@@ -2,7 +2,6 @@ import "./App.css";
 import Home from "./components/Home";
 import NavBar from "./components/NavBar";
 import About from "./components/About";
-import Contact from "./components/Contact";
 import Signup from "./pages/Signup";
 import ProductList from "./pages/ProductList";
 import ProductItem from "./pages/ProductItem";
@@ -72,9 +71,6 @@ function App() {
           </Route>
           <Route path="/success">
             <SuccessPage />
-          </Route>
-          <Route path="/contact">
-            <Contact />
           </Route>
           <Route path="/dashboard">
             <Dashboard role={role} auth={auth}/>

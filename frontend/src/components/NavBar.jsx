@@ -23,7 +23,7 @@ const Li = styled.li`
 
 const LinkStyled = styled(Link)`
   text-decoration: none;
-  color: black;
+  color: #0D1B2A;
   font-size: 2rem;
   display: flex;
   justify-content: space-between;
@@ -33,17 +33,15 @@ const LinkStyled = styled(Link)`
 
 const Button = styled.button`
   padding: 10px;
-  margin: 6px 3px;
+  margin: 6px 25px;
   border: none;
   color: white;
-  border-radius: 6px;
   box-sizing: border-box;
   cursor: pointer;
   font-size: 16px;
   background-color: #778DA9;
   @media only screen and (max-width: 600px) {
     border: none;
-    border-radius: 6px;
     box-sizing: border-box;
     cursor: pointer;
     font-size: 14px;
@@ -59,13 +57,10 @@ function NavBar({ role, auth, handleLogOut, userName }) {
           <Li>Home</Li>
         </LinkStyled>
         <LinkStyled to="/products" className="products">
-          <Li>Programmes offered</Li>
+          <Li>Classes & Fees</Li>
         </LinkStyled>
         <LinkStyled to="/about" className="about">
           <Li>About Us</Li>
-        </LinkStyled>
-        <LinkStyled to="/contact" className="contact">
-          <Li>Contact Us</Li>
         </LinkStyled>
         {role === "Admin" ? (
           <LinkStyled to="/dashboard" className="dashboard">
@@ -85,7 +80,7 @@ function NavBar({ role, auth, handleLogOut, userName }) {
           </>
         ) : (
           <>
-            <p>Hi {userName}!</p>
+            <p>Welcome, {userName}!</p>
             <LinkStyled to="/" className="logout">
               <Button primary onClick={handleLogOut}>
                 Logout
