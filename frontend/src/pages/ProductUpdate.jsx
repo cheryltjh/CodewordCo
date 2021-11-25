@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Register() {
+export default function ProducUpdate() {
     return (
         <div>
-            <h1>Create user</h1>
+            Update product
         </div>
     )
 }

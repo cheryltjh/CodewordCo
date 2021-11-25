@@ -1,5 +1,5 @@
 const User = require("../models/userModel");
-const Order = require("../models/orderModel");
+// const Order = require("../models/orderModel");
 
 // for hashing password
 const bcrypt = require("bcrypt");
@@ -52,9 +52,9 @@ const deleteUser = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     // remove orders associated with the user
-    Order.remove({ user_id: { $in: user.username } }, (err, data) => {
-      console.log(data);
-    });
+    // Order.remove({ user_id: { $in: user.username } }, (err, data) => {
+    //   console.log(data);
+    // });
     // remove the user
     await user.remove();
     // if the user doesnt exist, throw error

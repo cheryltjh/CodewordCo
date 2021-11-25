@@ -70,13 +70,14 @@ const Button = styled.button`
   `;
 
 function NavBar({ role, auth, handleLogOut, userName }) {
+
   return (
     <>
       <Navbar>
         <LinkStyled to="/" className="home">
           <Li>Home</Li>
         </LinkStyled>
-        <LinkStyled to="/products/list" className="products">
+        <LinkStyled to="/products" className="products">
           <Li>Programmes offered</Li>
         </LinkStyled>
         <LinkStyled to="/about" className="about">

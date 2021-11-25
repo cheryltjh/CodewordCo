@@ -13,7 +13,7 @@ const sessionRouter = require("./controllers/sessionRouter");
 const MONGO_URI = process.env.MONGO_URI 
 
 mongoose
-  .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
   .catch((err) => {
     console.error("Connection error", err.message);
   });
@@ -37,6 +37,7 @@ app.use("/api", productRouter);
 app.use("/api", orderRouter);
 app.use("/api", userRouter);
 app.use("/api", sessionRouter);
+
 const Product = require("./models/productModel");
 app.get("/", (req, res) => {
   Product.create(
