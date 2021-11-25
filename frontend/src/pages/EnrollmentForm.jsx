@@ -115,7 +115,7 @@ export default function EnrollmentForm({ auth }) {
       console.log([enrollInformation]);
       await axios.post(`/api/enroll/`, enrollInformation).then((res) => {
         // window.alert(`Enrolled successfully!`);
-        history.push(`/successpage`);
+        history.push(`/success`);
       });
     } else {
       window.alert(`Sorry, you can only enroll when you're logged in!`);

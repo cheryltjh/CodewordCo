@@ -40,17 +40,14 @@ export const InputContainer = styled.div`
 `;
 
 export const Input = styled.input`
-font-family: "Spartan", sans-serif;
   margin: 5px;
   padding: 2px;
   border: 1px solid black;
-  border-radius: 6px;
   box-sizing: border-box;
   cursor: pointer;
   font-size: 16px;
   @media only screen and (max-width: 600px) {
     border: 1px solid black;
-    border-radius: 6px;
     box-sizing: border-box;
     cursor: pointer;
     font-size: 14px;
@@ -59,19 +56,16 @@ font-family: "Spartan", sans-serif;
 `;
 
 export const DescriptionInput = styled.textarea`
-font-family: "Spartan", sans-serif;
   height: 90px;
   resize: none;
   margin: 5px;
   padding: 2px;
   border: 1px solid black;
-  border-radius: 6px;
   box-sizing: border-box;
   cursor: pointer;
   font-size: 16px;
   @media only screen and (max-width: 600px) {
     border: 1px solid black;
-    border-radius: 6px;
     box-sizing: border-box;
     cursor: pointer;
     font-size: 14px;
@@ -81,10 +75,8 @@ font-family: "Spartan", sans-serif;
 
 export const Select = styled.select`
   margin: 5px;
-  border-radius: 6px;
   padding: 2px;
   cursor: pointer;
-  font-family: "Spartan", sans-serif;
 `;
 
 export const CancelLink = styled(Link)`
@@ -94,29 +86,20 @@ export const CancelLink = styled(Link)`
 `;
 
 export const Button = styled.button`
-  font-family: "Spartan", sans-serif;
-  font-weight: bold;
   padding: 10px;
   margin: 7px 2px;
   border: none;
-  border-radius: 6px;
+  color: white;
   box-sizing: border-box;
   cursor: pointer;
   font-size: 16px;
-  background-color: #EFBE93;
+  background-color: #778da9;
   @media only screen and (max-width: 600px) {
     border: none;
-    border-radius: 6px;
     box-sizing: border-box;
     cursor: pointer;
     font-size: 14px;
     position: relative;
-  }
-  &:hover {
-    background-color: rgb(228, 228, 228);
-  }
-  &:active {
-    background-color: grey};
   }
 `;
 

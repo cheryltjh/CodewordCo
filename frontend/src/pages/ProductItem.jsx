@@ -64,7 +64,7 @@ export default function ProductItem() {
         <img
           src={product?.image}
           alt={product?.name}
-          width="400px"
+          width="500px"
           height="400px"
         />
         <Content1>
