@@ -16,7 +16,6 @@ import {
   Redirect,
   Route,
   Switch,
-  useHistory,
 } from "react-router-dom";
 import axios from "axios";
 import React, { useState } from "react";
@@ -25,14 +24,14 @@ function App() {
   const [auth, setAuth] = useState("NoAuth");
   const [role, setRole] = useState("Guest");
   const [userName, setUsername] = useState("");
-  const history = useHistory();
+  // const history = useHistory();
   // handle function for logging out, passed as props to navbar
   const handleLogOut = async (event) => {
     await axios.delete(`/api/login`);
     setAuth("NoAuth");
     setRole("Guest");
     setUsername("");
-    history.push(`/`);
+    // history.push(`/`);
   };
 
   return (

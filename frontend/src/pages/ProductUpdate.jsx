@@ -109,14 +109,14 @@ export default function ProducUpdate({ role, auth }) {
               onChange={(event) => handleChange(event)}
             />
             <Input
-              type="text"
+              type="date"
               name="start"
               minLength="1"
               value={updateProductDetail.start}
               onChange={(event) => handleChange(event)}
             />
             <Input
-              type="text"
+              type="date"
               name="end"
               minLength="1"
               value={updateProductDetail.end}

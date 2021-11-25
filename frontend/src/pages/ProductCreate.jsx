@@ -82,8 +82,8 @@ export default function ProductCreate({role, auth}) {
                 required
               />
               <Input type="url" ref={inputProductImage} minLength="5" />
-              <Input type="text" ref={inputStartDate} minLength="2" required />
-              <Input type="text" ref={inputEndDate} minLength="2" required />
+              <Input type="date" ref={inputStartDate} minLength="2" required />
+              <Input type="date" ref={inputEndDate} minLength="2" required />
               <Input type="text" ref={inputPrice} minLength="2" required />
               <Input type="text" ref={inputSeatsAvailable} minLength="2" required />
             </InputContainer>

@@ -1,5 +1,4 @@
 const Product = require("../models/productModel");
-const Order = require("../models/orderModel");
 
 // Create all product CRUD operations
 
@@ -91,14 +90,9 @@ const createProduct = async (req, res) => {
   };
   
   // For deleting product
-  // When deleting product, all the corrresponding orders are deleted too
   const deleteProduct = async (req, res) => {
     try {
       const product = await Product.findById(req.params.id);
-      // remove orders associated with the cat
-      Order.remove({ product_id: { $in: req.params.id } }, (err, data) => {
-        console.log(data);
-      });
       // remove the product
       await product.remove();
       // if the product doesnt exist, throw error

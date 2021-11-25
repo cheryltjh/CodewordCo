@@ -7,7 +7,7 @@ const PORT = process.env.PORT ?? 3000;
 const mongoose = require("mongoose");
 const session = require("express-session");
 const productRouter = require("./controllers/productRouter");
-const orderRouter = require("./controllers/orderRouter");
+const enrollRouter = require("./controllers/enrollRouter");
 const userRouter = require("./controllers/userRouter");
 const sessionRouter = require("./controllers/sessionRouter");
 const MONGO_URI = process.env.MONGO_URI 
@@ -34,7 +34,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.json());
 app.use("/api", productRouter);
-app.use("/api", orderRouter);
+app.use("/api", enrollRouter);
 app.use("/api", userRouter);
 app.use("/api", sessionRouter);
 

@@ -1,14 +1,9 @@
-import React from 'react';
-import { Link } from "react-router-dom";
+import React from 'react'
 
 export default function EnrollmentForm() {
     return (
         <div>
-            Enrollment Form:
-            Please fill in your details
-            <Link to="/success" className="success">
-              <button primary>Submit</button>
-            </Link>
+            Enrollment form: please fill in your details!
         </div>
     )
 }
