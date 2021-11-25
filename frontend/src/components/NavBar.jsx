@@ -70,7 +70,6 @@ const Button = styled.button`
   `;
 
 function NavBar({ role, auth, handleLogOut, userName }) {
-
   return (
     <>
       <Navbar>
@@ -86,6 +85,13 @@ function NavBar({ role, auth, handleLogOut, userName }) {
         <LinkStyled to="/contact" className="contact">
           <Li>Contact Us</Li>
         </LinkStyled>
+        {role === "Admin" ? (
+          <LinkStyled to="/dashboard" className="dashboard">
+            <Li>Admin Dashboard</Li>
+          </LinkStyled>
+        ) : (
+          <></>
+        )}
         {auth === "NoAuth" ? (
           <>
             <LinkStyled to="/signup" className="signup">
@@ -99,7 +105,9 @@ function NavBar({ role, auth, handleLogOut, userName }) {
           <>
             <p>Hi {userName}!</p>
             <LinkStyled to="/" className="logout">
-              <Button primary onClick={handleLogOut}>Logout</Button>
+              <Button primary onClick={handleLogOut}>
+                Logout
+              </Button>
             </LinkStyled>
           </>
         )}

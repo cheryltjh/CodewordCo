@@ -10,6 +10,7 @@ import ProductUpdate from "./pages/ProductUpdate";
 import ProductCreate from "./pages/ProductCreate";
 import EnrollmentForm from "./pages/EnrollmentForm";
 import SuccessPage from "./pages/SuccessPage";
+import EnrollmentUpdate from "./pages/EnrollmentUpdate";
 import Login from "./pages/Login";
 import {
   BrowserRouter as Router,
@@ -19,6 +20,7 @@ import {
 } from "react-router-dom";
 import axios from "axios";
 import React, { useState } from "react";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   const [auth, setAuth] = useState("NoAuth");
@@ -50,6 +52,9 @@ function App() {
           <Route path="/products/edit/:id">
             <ProductUpdate role={role} auth={auth} />
           </Route>
+          <Route path="/enrolls/edit/:id">
+            <EnrollmentUpdate role={role} auth={auth} />
+          </Route>
           <Route path="/products/new">
             <ProductCreate role={role} auth={auth} />
           </Route>
@@ -63,13 +68,16 @@ function App() {
             <ProductList role={role} />
           </Route>
           <Route path="/enroll">
-            <EnrollmentForm />
+            <EnrollmentForm auth={auth} />
           </Route>
           <Route path="/success">
             <SuccessPage />
           </Route>
           <Route path="/contact">
             <Contact />
+          </Route>
+          <Route path="/dashboard">
+            <Dashboard role={role} auth={auth}/>
           </Route>
           <Route path="/signup">
             <Signup />
