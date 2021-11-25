@@ -2,15 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import {
-  CardWrapper,
-  CardImage,
-  CardTextWrapper,
-  CardTextTitle,
-  CardStatWrapper,
-  CardStats,
   LinkText,
   Div,
-  ProductWrapper,
 } from "../styles/DashboardStyle";
 
 function Dashboard({ role }) {
