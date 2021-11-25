@@ -10,7 +10,6 @@ import ProductUpdate from "./pages/ProductUpdate";
 import ProductCreate from "./pages/ProductCreate";
 import EnrollmentForm from "./pages/EnrollmentForm";
 import SuccessPage from "./pages/SuccessPage";
-import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import {
   BrowserRouter as Router,
@@ -49,6 +48,12 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
+          <Route path="/products/edit/:id">
+            <ProductUpdate role={role} auth={auth} />
+          </Route>
+          <Route path="/products/new">
+            <ProductCreate role={role} auth={auth} />
+          </Route>
           <Route path="/products/:id">
             <ProductItem />
           </Route>
@@ -58,20 +63,11 @@ function App() {
           <Route path="/products">
             <ProductList role={role} />
           </Route>
-          <Route path="/cart">
-            <Cart role={role} auth={auth}/>
-          </Route>
           <Route path="/enroll">
             <EnrollmentForm />
           </Route>
           <Route path="/success">
             <SuccessPage />
-          </Route>
-          <Route path="/products/new">
-            <ProductCreate role={role} auth={auth} />
-          </Route>
-          <Route path="/products/edit/:id">
-            <ProductUpdate role={role} auth={auth} />
           </Route>
           <Route path="/contact">
             <Contact />

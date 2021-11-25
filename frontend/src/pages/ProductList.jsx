@@ -37,7 +37,7 @@ function ProductList({ role }) {
   };
 
   const updateProduct = (id) => {
-    history.push(`/products/${id}`);
+    history.push(`/products/edit/${id}`);
   };
 
   return (

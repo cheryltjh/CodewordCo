@@ -8,8 +8,8 @@ export default function ProductItem() {
     // For the product data
     const [product, setProduct] = useState();
     // handle function to return user to product list page
-    const cartPage = () => {
-      history.push(`/cart`);
+    const enrollmentPage = () => {
+      history.push(`/enroll`);
     };
     // useeffect to get the product data
     useEffect(() => {
@@ -37,7 +37,7 @@ export default function ProductItem() {
               <p> {product?.price}</p>
               <h4>Seats Available:</h4>
               <p> {product?.seatsAvailable}</p>
-            <button onClick={() => cartPage()}>Add to Cart</button>
+            <button onClick={() => enrollmentPage()}>Enroll Now!</button>
           </>
     )
 }
