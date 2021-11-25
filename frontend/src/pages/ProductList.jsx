@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   CardWrapper,
   CardImage,
@@ -19,7 +19,7 @@ import {
 function ProductList({ role }) {
   // For the product data
   const [products, setProducts] = useState([]);
-  let navigate = useNavigate();
+  let history = useHistory();
   // useeffect to get the products data on render
   useEffect(() => {
     async function getProductsData() {
@@ -37,7 +37,7 @@ function ProductList({ role }) {
   };
 
   const updateProduct = (id) => {
-    navigate(`/products/edit/${id}`);
+    history.push(`/products/${id}`);
   };
 
   return (

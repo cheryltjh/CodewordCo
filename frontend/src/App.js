@@ -6,31 +6,91 @@ import Contact from "./components/Contact";
 import Signup from "./pages/Signup";
 import ProductList from "./pages/ProductList";
 import ProductItem from "./pages/ProductItem";
+import ProductUpdate from "./pages/ProductUpdate";
+import ProductCreate from "./pages/ProductCreate";
 import EnrollmentForm from "./pages/EnrollmentForm";
 import SuccessPage from "./pages/SuccessPage";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+  useHistory,
+} from "react-router-dom";
+import axios from "axios";
+import React, { useState } from "react";
 
 function App() {
+  const [auth, setAuth] = useState("NoAuth");
+  const [role, setRole] = useState("Guest");
+  const [userName, setUsername] = useState("");
+  const history = useHistory();
+  // handle function for logging out, passed as props to navbar
+  const handleLogOut = async (event) => {
+    await axios.delete(`/api/login`);
+    setAuth("NoAuth");
+    setRole("Guest");
+    setUsername("");
+    history.push(`/`);
+  };
 
   return (
     <div className="App">
-      <BrowserRouter>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/products" element={<ProductList />} />
-          <Route path="/products/:id" element={<ProductItem />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/enroll" element={<EnrollmentForm />} />
-          <Route path="/success" element={<SuccessPage />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-      </BrowserRouter>
+      <Router>
+        <NavBar
+          role={role}
+          auth={auth}
+          handleLogOut={handleLogOut}
+          userName={userName}
+        />
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/products/:id">
+            <ProductItem />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/products">
+            <ProductList role={role} />
+          </Route>
+          <Route path="/cart">
+            <Cart role={role} auth={auth}/>
+          </Route>
+          <Route path="/enroll">
+            <EnrollmentForm />
+          </Route>
+          <Route path="/success">
+            <SuccessPage />
+          </Route>
+          <Route path="/products/new">
+            <ProductCreate role={role} auth={auth} />
+          </Route>
+          <Route path="/products/edit/:id">
+            <ProductUpdate role={role} auth={auth} />
+          </Route>
+          <Route path="/contact">
+            <Contact />
+          </Route>
+          <Route path="/signup">
+            <Signup />
+          </Route>
+          <Route path="/login">
+            <Login
+              setAuth={setAuth}
+              setRole={setRole}
+              setUsername={setUsername}
+            />
+          </Route>
+          <Route>
+            <Redirect to="/" />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }

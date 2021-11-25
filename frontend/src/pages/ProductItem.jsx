@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 
 export default function ProductItem() {
     let id = useParams();
-    let navigate = useNavigate();
+    let history = useHistory();
     // For the product data
     const [product, setProduct] = useState();
     // handle function to return user to product list page
     const cartPage = () => {
-      navigate(`/cart`);
+      history.push(`/cart`);
     };
     // useeffect to get the product data
     useEffect(() => {

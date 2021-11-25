@@ -88,7 +88,7 @@ function NavBar({ role, auth, handleLogOut, userName }) {
         </LinkStyled>
         {auth === "NoAuth" ? (
           <>
-            <LinkStyled to="/users/new" className="signup">
+            <LinkStyled to="/signup" className="signup">
               <Li>Signup</Li>
             </LinkStyled>
             <LinkStyled to="/login" className="login">
