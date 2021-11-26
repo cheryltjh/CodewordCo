@@ -16,18 +16,6 @@ export const LoginInfo = styled.div`
   align-items: center;
 `;
 
-export const LabelContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-top: 2px;
-`;
-
-export const InputContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 export const Label = styled.label`
   margin: 4px 5px;
   padding: 4px;
@@ -108,11 +96,7 @@ function Login({ setAuth, setRole, setUsername }) {
       <h1>Login to your account</h1>
       <Form>
         <LoginInfo>
-          <LabelContainer>
             <Label>Username:</Label>
-            <Label>Password:</Label>
-          </LabelContainer>
-          <InputContainer>
             <Input
               type="text"
               name="username"
@@ -120,6 +104,7 @@ function Login({ setAuth, setRole, setUsername }) {
               value={login.username}
               onChange={handleUsernameChange}
             />
+            <Label>Password:</Label>
             <Input
               type="password"
               name="password"
@@ -128,7 +113,6 @@ function Login({ setAuth, setRole, setUsername }) {
               onChange={handlePasswordChange}
               minlength="6"
             />
-          </InputContainer>
           <Button type="submit" onClick={handleSubmit}>
             Submit
           </Button>
