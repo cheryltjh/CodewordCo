@@ -171,7 +171,7 @@ export default function ProducUpdate({ role, auth }) {
             <Label>Start Date:</Label>
             <Label>End Date:</Label>
             <Label>Price:</Label>
-            <Label>Seats Available:</Label>
+            <Label>Class size:</Label>
           </LabelContainer>
           <InputContainer>
             <Input

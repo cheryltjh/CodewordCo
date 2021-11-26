@@ -77,7 +77,7 @@ export default function ProductItem() {
           <p> {product?.end}</p>
           <h4>Price:</h4>
           <p> {product?.price}</p>
-          <h4>Seats Available:</h4>
+          <h4>Class size:</h4>
           <p> {product?.seatsAvailable}</p>
           <Button onClick={() => enrollmentPage()}>Enroll Now!</Button>
         </Content1>

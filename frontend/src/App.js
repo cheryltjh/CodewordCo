@@ -51,7 +51,7 @@ function App() {
           <Route path="/products/edit/:id">
             <ProductUpdate role={role} auth={auth} />
           </Route>
-          <Route path="/enrolls/edit/:id">
+          <Route path="/enroll/edit/:id">
             <EnrollmentUpdate role={role} auth={auth} />
           </Route>
           <Route path="/products/new">

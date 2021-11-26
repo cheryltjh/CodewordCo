@@ -135,11 +135,11 @@ export default function ProductCreate({role, auth}) {
           };
           console.log([productInformation]);
           await axios.post(`/api/products/`, productInformation).then((res) => {
-            window.alert(`Products created successfully!`);
+            window.alert(`Class created successfully!`);
             history.push(`/products`);
           });
         } else {
-          window.alert(`Sorry, only Admin can create products!`);
+          window.alert(`Sorry, only Admin can create classes!`);
           history.push(`/products`);
         }
       };
@@ -161,7 +161,7 @@ export default function ProductCreate({role, auth}) {
               <Label>Start Date:</Label>
               <Label>End Date:</Label>
               <Label>Price:</Label>
-              <Label>Seats Available:</Label>
+              <Label>Class size:</Label>
             </LabelContainer>
             <InputContainer>
             <Input type="text" ref={inputProductName} minLength="2" required />

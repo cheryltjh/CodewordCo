@@ -9,12 +9,9 @@ export const Img = styled.img`
 `;
 
 export const Button = styled.button`
-  font-family: "Spartan", sans-serif;
-  font-weight: bold;
   padding: 10px;
   margin: 6px 2px;
   border: none;
-  border-radius: 6px;
   box-sizing: border-box;
   cursor: pointer;
   font-size: 16px;
@@ -27,21 +24,12 @@ export const Button = styled.button`
     font-size: 14px;
     position: relative;
   }
-  &:hover {
-    background-color: rgb(228, 228, 228);
-  }
-  &:active {
-    background-color: grey};
-  }
 `;
 
 export const Button2 = styled.button`
-  font-family: "Spartan", sans-serif;
-  font-weight: bold;
   padding: 7px;
   margin: 6px 2px;
   border: none;
-  border-radius: 6px;
   box-sizing: border-box;
   cursor: pointer;
   font-size: 10px;
@@ -53,12 +41,6 @@ export const Button2 = styled.button`
     cursor: pointer;
     font-size: 10px;
     position: relative;
-  }
-  &:hover {
-    background-color: rgb(228, 228, 228);
-  }
-  &:active {
-    background-color: grey};
   }
   text-align: center;
 `;

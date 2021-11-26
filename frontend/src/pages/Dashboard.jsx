@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 
-const Th = styled.th`
+export const Th = styled.th`
   padding-top: 12px;
   padding-bottom: 12px;
   width: 250px;
@@ -13,8 +13,27 @@ const Th = styled.th`
   border: 1px solid #ddd;
 `;
 
-const Td = styled.td`
+export const Td = styled.td`
 border: 1px solid #ddd;
+`;
+
+export const Button = styled.button`
+  padding: 10px;
+  margin: 7px 2px;
+  border: none;
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  background-color: #778da9;
+  @media only screen and (max-width: 600px) {
+    border: none;
+    border-radius: 6px;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 14px;
+    position: relative;
+  }
 `;
 
 function Dashboard({ role }) {
@@ -38,7 +57,7 @@ function Dashboard({ role }) {
   };
 
   const updateEnroll = (id) => {
-    history.push(`/enrolls/edit/${id}`);
+    history.push(`/enroll/edit/${id}`);
   };
 
   return (
@@ -50,7 +69,7 @@ function Dashboard({ role }) {
           <>
             <div class="enrolls">
               <p key={element._id} />
-              <Link to={`/enrolls/${element._id}`}></Link>
+              <Link to={`/enroll/${element._id}`}></Link>
               <tr>
                 <Th>Name:</Th>
                 <Th>Phone number:</Th>
@@ -66,12 +85,12 @@ function Dashboard({ role }) {
                 <Td>{element.product}</Td>
                 {role === "Admin" && (
                   <>
-                    <Link onClick={() => updateEnroll(element._id)}>
+                    <Button onClick={() => updateEnroll(element._id)}>
                       Update
-                    </Link>{" "}
-                    <Link onClick={() => deleteEnroll(element._id)}>
+                    </Button>{" "}
+                    <Button onClick={() => deleteEnroll(element._id)}>
                       Delete
-                    </Link>
+                    </Button>
                   </>
                 )}
               </tr>
