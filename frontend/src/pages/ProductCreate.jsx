@@ -95,12 +95,6 @@ export const Button = styled.button`
     font-size: 14px;
     position: relative;
   }
-  &:hover {
-    background-color: rgb(228, 228, 228);
-  }
-  &:active {
-    background-color: grey};
-  }
 `;
 
 export default function ProductCreate({role, auth}) {
