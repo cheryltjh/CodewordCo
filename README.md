@@ -3,9 +3,7 @@
 Visit the website here:
 
 ## Description
-We want to create a useful app that would be of help for the shelter volunteers. They are a volunteer group at Animal Lodge @ sungei tengah.
-
--	App is meant to help the shelter volunteers to organise their animal details list, raise awareness about the cats + showcase the cats
+Dive in the world of coding!
 
 ### Technology Used
 
@@ -25,7 +23,7 @@ We want to create a useful app that would be of help for the shelter volunteers.
 - Authenticated login for Guest users to enroll
 
 Suggested pages:
-1.	Nav bar: Home/Cats/About/Sign up/Login
+1.	Nav bar: Home/Classes/About/Sign up/Login
 2.	Home page
 3.	Classes & Fees
 4.	About page
